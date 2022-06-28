@@ -18,9 +18,16 @@ parser.add_argument("-W", "--width",  help="Width (px)",             type=int)
 parser.add_argument("-H", "--height", help="Height (px)",            type=int)
 args = parser.parse_args()
 
-filepaths = [
-    os.path.abspath(os.path.join(f"{args.input}/root", filename)) for filename in os.listdir(f"{args.input}/root")
-]
+
+root_dirpath=os.path.abspath(f"{dir}/root")
+
+ts=[]
+for filename in os.listdir(root_dirpath):
+    ts.append(int(filename.replace('collection_', '').replace('.silo', '')))
+
+filepaths = []
+for t in sorted(ts):
+    filepaths.append(f"{root_dirpath}/collection_{t}.silo")
 
 tBegin,tEnd=0,len(filepaths)-1
 print(f"    -- Located {len(filepaths)} files: t={tBegin}..{tEnd}")

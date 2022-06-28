@@ -19,7 +19,7 @@ parser.add_argument("-H", "--height", help="Height (px)",            type=int)
 args = parser.parse_args()
 
 
-root_dirpath=os.path.abspath(f"{dir}/root")
+root_dirpath=os.path.abspath(os.sep.join([args.input, "root"]))
 
 ts=[]
 for filename in os.listdir(root_dirpath):
@@ -27,7 +27,7 @@ for filename in os.listdir(root_dirpath):
 
 filepaths = []
 for t in sorted(ts):
-    filepaths.append(f"{root_dirpath}/collection_{t}.silo")
+    filepaths.append(os.sep.join([root_dirpath, f"collection_{t}.silo"]))
 
 tBegin,tEnd=0,len(filepaths)-1
 print(f"    -- Located {len(filepaths)} files: t={tBegin}..{tEnd}")
@@ -123,13 +123,13 @@ if not os.path.exists(args.output):
     os.mkdir(args.output)
 
 for t in range(tBegin, tEnd+1):
-    print(f"    -- t={t}... {int(100*(t-tBegin)/(tEnd-tBegin))}%")
+    print(f"    -- t={t:04}... {int(100*(t-tBegin)/(tEnd-tBegin))}%")
 
     animationScene1.AnimationTime = t
     SaveScreenshot(
         os.sep.join([
             os.path.abspath(args.output),
-            f"frame{t}.png"
+            f"frame{t:04}.png"
         ]),
         renderView1
     )

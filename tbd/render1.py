@@ -62,7 +62,7 @@ extractSurface1 = ExtractSurface(registrationName='ExtractSurface1', Input=thres
 
 print(f"    -- Smooth...")
 smooth1 = Smooth(registrationName='Smooth1', Input=extractSurface1)
-smooth1.NumberofIterations = 500
+smooth1.NumberofIterations = 1000
 
 print(f"    -- Smooth::Show...")
 smooth1Display = Show(smooth1, renderView1, 'GeometryRepresentation')

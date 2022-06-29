@@ -66,7 +66,6 @@ smooth1.NumberofIterations = 500
 
 print(f"    -- Smooth::Show...")
 smooth1Display = Show(smooth1, renderView1, 'GeometryRepresentation')
-smooth1Display.OSPRayScaleFunction.Points = [88778.1059934707, 0.0, 0.5, 0.0, 248758.5670000251, 1.0, 0.5, 0.0]
 smooth1Display.AmbientColor = [0.0, 0.6666666666666666, 0.4980392156862745]
 smooth1Display.DiffuseColor = [0.0, 0.6666666666666666, 0.4980392156862745]
 
@@ -82,7 +81,6 @@ slice1.SliceType.Normal = [0.0, 0.0, 1.0]
 
 print(f"    -- Slice::Show...")
 slice1Display = Show(slice1, renderView1, 'GeometryRepresentation')
-slice1Display.OSPRayScaleFunction.Points = [88778.1059934707, 0.0, 0.5, 0.0, 248758.5670000251, 1.0, 0.5, 0.0]
 
 ColorBy(slice1Display, ('CELLS', 'pres'))
 
@@ -100,10 +98,32 @@ presPWF.RescaleTransferFunctionToDataRange()
 
 print("    -- Camera...")
 
-renderView1.CameraPosition      = [-0.6483354062224631, -1.4821377484240263, 1.1946868818785603]
-renderView1.CameraFocalPoint    = [0.5401537335192009,  0.45586146097184693, 0.14008397033907388]
-renderView1.CameraViewUp        = [0.12344579326116971, 0.4148529769175945, 0.9014755369219568]
-renderView1.CameraParallelScale = 0.6486262778710543
+renderView1.CameraPosition = [
+    2.4865321746026474,
+    1.2779948204175584,
+    1.4973212057509766,
+]
+
+renderView1.CameraFocalPoint = [
+    0.488354302970065,
+    0.521430160774283,
+    0.014759905472983
+]
+
+renderView1.CameraViewUp = [
+    -0.473695660569662,
+    -0.340500634876452,
+    0.8122017845376877
+]
+
+renderView1.CenterOfRotation = [
+    0.4999999925494194,
+    0.4999999925494194,
+    0.0100000002421438
+]
+
+renderView1.CameraParallelScale       = 0.44748450634427417
+renderView1.CameraParallelProjection  = 1
 renderView1.OrientationAxesVisibility = 0
 
 print("    -- GetLayout...")

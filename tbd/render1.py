@@ -85,7 +85,6 @@ slice1Display = Show(slice1, renderView1, 'GeometryRepresentation')
 ColorBy(slice1Display, ('CELLS', 'pres'))
 
 slice1Display.RescaleTransferFunctionToDataRange()
-slice1Display.SetScalarBarVisibility(renderView1, False)
 
 presLUT = GetColorTransferFunction('pres')
 presPWF = GetOpacityTransferFunction('pres')
@@ -93,12 +92,12 @@ presPWF = GetOpacityTransferFunction('pres')
 slice1Display.SetScalarBarVisibility(renderView1, False)
 
 presLUT.ApplyPreset('Cool to Warm', True)
-presLUT.RescaleTransferFunctionToDataRange()
-presPWF.RescaleTransferFunctionToDataRange()
+presLUT.RescaleTransferFunction(-1e3, 1e7)
+presPWF.RescaleTransferFunction(-1e3, 1e7)
 presLUT.RGBPoints = [
-    8e6, 0.23137254902, 0.298039215686, 0.752941176471,
-    2e6, 0.865,         0.865,          0.865,
-    1e5, 0.705,         0.0156,         0.14902,
+    55287.7, 0.23137254902, 0.298039215686, 0.752941176471,
+    533390,  0.865,         0.865,          0.865,
+    1.01e6,  0.705,         0.0156,         0.14902,
 ]
 
 print("    -- Camera...")

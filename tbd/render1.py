@@ -85,7 +85,6 @@ slice1Display = Show(slice1, renderView1, 'GeometryRepresentation')
 ColorBy(slice1Display, ('CELLS', 'pres'))
 
 slice1Display.RescaleTransferFunctionToDataRange()
-slice1Display.SetScalarBarVisibility(renderView1, False)
 
 presLUT = GetColorTransferFunction('pres')
 presPWF = GetOpacityTransferFunction('pres')
@@ -93,8 +92,17 @@ presPWF = GetOpacityTransferFunction('pres')
 slice1Display.SetScalarBarVisibility(renderView1, False)
 
 presLUT.ApplyPreset('Cool to Warm', True)
-presLUT.RescaleTransferFunctionToDataRange()
-presPWF.RescaleTransferFunctionToDataRange()
+
+presLUT.RGBPoints = [
+    101324.45136132241, 0.23137254902, 0.298039215686, 0.752941176471,
+    101332.72568066121, 0.5098039215686274, 0.6470588235294118, 0.984313725490196,
+    101332.72568066121, 0.865, 0.865, 0.865,
+    101332.78125,       0.9686274509803922, 0.6627450980392157, 0.5450980392156862,
+    101341.0,           0.705882352941, 0.0156862745098, 0.149019607843
+]
+
+presLUT.RescaleTransferFunction(-1000.0, 1000000.0)
+presPWF.RescaleTransferFunction(-1000.0, 1000000.0)
 
 print("    -- Camera...")
 
@@ -140,7 +148,7 @@ SetActiveSource(collection_)
 if not os.path.exists(args.output):
     os.mkdir(args.output)
 
-for t in range(tBegin, tEnd+1):
+for t in range(tBegin+100, tEnd+1):
     print(f"    -- t={t:04}... {int(100*(t-tBegin)/(tEnd-tBegin))}%")
 
     animationScene1.AnimationTime = t
